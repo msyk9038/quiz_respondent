@@ -1,31 +1,88 @@
+# クイズ回答者用デバイス (micro:bit)
 
-> Open this page at [https://msyk9038.github.io/quiz_respondent/](https://msyk9038.github.io/quiz_respondent/)
+このプロジェクトは、BBC micro:bitを使用したクイズ大会の回答者用デバイスを実装したものです。
 
-## Use as Extension
+## 概要
 
-This repository can be added as an **extension** in MakeCode.
+クイズ大会やクイズゲームで使用する回答者（参加者）用のデバイスです。ボタンを押すことで回答の意思表示を行い、出題者用デバイスと無線通信で連携します。早押しクイズや○×クイズなど、様々なクイズ形式に対応しています。
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/msyk9038/quiz_respondent** and import
+## 機能
 
-## Edit this project ![Build status badge](https://github.com/msyk9038/quiz_respondent/workflows/MakeCode/badge.svg)
+- 早押しボタン機能
+- ○×回答機能
+- 複数選択肢（A/B/C/D）回答機能
+- 回答時間の計測
+- 回答結果の表示
+- 出題者デバイスとの無線通信
 
-To edit this repository in MakeCode.
+## 使用方法
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/msyk9038/quiz_respondent** and click import
+1. [MakeCode エディタ](https://makecode.microbit.org/)を開く
+2. 「読み込む」をクリックし、このリポジトリからダウンロードした .hex ファイルを選択
+3. または、「インポート」→「URLから読み込む」を選択し、このリポジトリのURLを入力
+4. micro:bitにダウンロードして使用
+5. 出題者用デバイスと同じグループIDを設定して使用します
 
-## Blocks preview
+## 操作方法
 
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
+### 早押しモード
+- Aボタン: 回答ボタン（早押し）
+- 回答が受け付けられると「✓」アイコンが表示されます
+- 他の参加者が先に回答した場合は「×」アイコンが表示されます
 
-![A rendered view of the blocks](https://github.com/msyk9038/quiz_respondent/raw/master/.github/makecode/blocks.png)
+### ○×クイズモード
+- Aボタン: ○（正解）と回答
+- Bボタン: ×（不正解）と回答
+- 回答後、出題者からの結果を待ちます
 
-#### Metadata (used for search, rendering)
+### 選択問題モード
+- Aボタンを押す回数: A(1回), B(2回), C(3回), D(4回)を選択
+- Bボタン: 選択を確定
+- 選択中の選択肢がLEDに表示されます
 
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+## セットアップ
+
+### グループIDの設定
+1. A+Bボタンを5秒間長押し
+2. 「ID」と表示されたら、Aボタンで10の位、Bボタンで1の位を設定
+3. 設定したIDが表示され、保存されます
+4. 出題者用デバイスと同じIDを設定してください
+
+### 参加者番号の設定
+1. Bボタンを5秒間長押し
+2. 「No」と表示されたら、Aボタンで10の位、Bボタンで1の位を設定
+3. 設定した番号が表示され、保存されます
+4. 各参加者は異なる番号を設定してください
+
+## 通信仕様
+
+- 無線通信: micro:bitの無線機能を使用
+- 通信範囲: 約10m（障害物がない場合）
+- グループID: 0-99の範囲で設定可能
+- 参加者番号: 1-99の範囲で設定可能
+
+## 連携デバイス
+
+このデバイスは、以下のデバイスと連携して使用します：
+- [クイズ出題者用デバイス](https://github.com/msyk9038/quiz_questioner)
+
+## 拡張アイデア
+
+- 回答時間に応じたスコアリングシステム
+- 複数回答の許可/禁止設定
+- チーム戦モードの追加
+- 音声フィードバックの強化
+
+## 注意事項
+
+- 多数の参加者が同時に使用する場合、電波干渉が発生する可能性があります
+- 参加者間の距離を適切に保ち、出題者デバイスは中央に配置することをおすすめします
+- 電池残量が少なくなると、通信が不安定になる場合があります
+
+## ライセンス
+
+MIT
+
+## 作者
+
+msyk9038
